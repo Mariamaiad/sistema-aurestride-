@@ -1,0 +1,232 @@
+{
+  "settings": {
+    "brand": {
+      "name": "Aurestride Digital",
+      "tagline": "Marketing e tecnologia para pequenos negócios",
+      "logo_url": "",
+      "description": "Marketing digital, criação de sites e sistemas web para pequenos negócios que querem crescer com mais presença, organização e profissionalismo."
+    },
+    "colors": {
+      "background": "#0B1220",
+      "primary": "#086BFF",
+      "text": "#F8FAFC",
+      "muted": "#64748B"
+    },
+    "contact": {
+      "whatsapp": "",
+      "whatsapp_message": "Olá! Vim pelo site da Aurestride Digital e gostaria de solicitar um orçamento.",
+      "plan_message": "Olá! Tenho interesse no {plano} da Aurestride Digital. Podemos conversar?",
+      "service_message": "Olá! Gostaria de um orçamento para: {servico}.",
+      "email": "",
+      "instagram": "",
+      "linkedin": "",
+      "tiktok": "",
+      "form_enabled": true
+    },
+    "seo": {
+      "title": "Aurestride Digital — Marketing, sites e sistemas web para pequenos negócios",
+      "description": "Estratégia digital, gestão de redes sociais, criação de sites e sistemas web sob medida para pequenos negócios.",
+      "og_image": "",
+      "site_url": ""
+    },
+    "hero": {
+      "eyebrow": "Aurestride Digital",
+      "title": "Marketing e tecnologia para o seu negócio crescer.",
+      "subtitle": "Estratégia digital, sites e sistemas web desenvolvidos para ajudar pequenos negócios a evoluir com mais presença, organização e profissionalismo.",
+      "image_url": "/images/hero-equipe.jpg",
+      "image_alt": "Maria e Lukas, da Aurestride Digital, em reunião",
+      "cta_primary": "Conheça nossos serviços",
+      "cta_secondary": "Solicitar orçamento",
+      "highlights": [
+        { "title": "Marketing Digital", "text": "Conteúdo, redes sociais e posicionamento" },
+        { "title": "Sites", "text": "Landing pages, institucionais e catálogos" },
+        { "title": "Sistemas Web", "text": "Gestão, automações e integrações" }
+      ]
+    },
+    "about": {
+      "eyebrow": "Sobre nós",
+      "title": "Marketing e tecnologia trabalhando juntos",
+      "text": "A Aurestride Digital une estratégia de marketing e desenvolvimento web para oferecer soluções práticas e acessíveis a pequenos negócios. Cuidamos da presença digital da sua empresa e criamos as ferramentas que ajudam a organizar o dia a dia, para que você possa se concentrar em atender bem e crescer.",
+      "mission": "Ajudar pequenos negócios a crescer com comunicação clara e ferramentas digitais que simplificam a rotina.",
+      "vision": "Ser a parceira digital de referência para pequenos negócios que querem evoluir com profissionalismo.",
+      "values": ["Transparência", "Clareza no que é entregue", "Proximidade com o cliente", "Soluções práticas", "Melhoria contínua"],
+      "how_we_work": "Começamos entendendo o seu negócio, definimos juntos o escopo e o investimento, executamos com acompanhamento próximo e revisamos os resultados para planejar os próximos passos."
+    },
+    "sections": {
+      "team_eyebrow": "Quem somos",
+      "team_title": "As pessoas por trás da Aurestride",
+      "team_subtitle": "Uma equipe enxuta, com atendimento direto de quem faz o trabalho.",
+      "marketing_eyebrow": "Marketing digital",
+      "marketing_title": "Presença digital com estratégia",
+      "marketing_subtitle": "Planejamento, criação e acompanhamento para que suas redes sociais trabalhem a favor do seu negócio.",
+      "web_eyebrow": "Criação de sites",
+      "web_title": "Sites que apresentam e vendem",
+      "web_subtitle": "Páginas rápidas, responsivas e pensadas para transformar visitantes em contatos.",
+      "systems_eyebrow": "Sistemas web e automações",
+      "systems_title": "Tecnologia sob medida para a sua rotina",
+      "systems_subtitle": "Cada sistema personalizado começa com um levantamento de requisitos. Entendemos o seu processo antes de propor uma solução e um orçamento específico.",
+      "plans_eyebrow": "Planos de marketing",
+      "plans_title": "Escolha o plano ideal para o seu momento",
+      "plans_subtitle": "Valores mensais de referência. Os vídeos curtos fazem parte da quantidade total de conteúdos de cada plano.",
+      "plans_disclaimer": "Não estão incluídos, salvo previsão expressa em proposta: captação presencial de fotos e vídeos, deslocamento, anúncios pagos, verba de mídia e ferramentas de terceiros.",
+      "web_pricing_eyebrow": "Investimento",
+      "web_pricing_title": "Desenvolvimento web",
+      "web_pricing_disclaimer": "Valores de referência. O valor final depende do escopo, funcionalidades, integrações, prazo e requisitos de cada projeto.",
+      "portfolio_eyebrow": "Portfólio",
+      "portfolio_title": "Projetos e estudos de caso",
+      "portfolio_subtitle": "Conheça alguns trabalhos desenvolvidos pela Aurestride.",
+      "portfolio_empty": "Novos projetos serão publicados em breve.",
+      "process_eyebrow": "Como funciona",
+      "process_title": "Um processo simples e transparente",
+      "faq_eyebrow": "Dúvidas",
+      "faq_title": "Perguntas frequentes",
+      "contact_eyebrow": "Contato",
+      "contact_title": "Vamos conversar sobre o seu negócio?",
+      "contact_text": "Conte o que você precisa e retornamos com uma proposta clara, com escopo e investimento definidos."
+    },
+    "footer": {
+      "text": "Marketing digital, sites e sistemas web para pequenos negócios.",
+      "copyright": "Aurestride Digital. Todos os direitos reservados."
+    },
+    "privacy": {
+      "enabled": true,
+      "content": "Esta política descreve como a Aurestride Digital trata os dados enviados pelo formulário de contato deste site.\n\nDados coletados: nome, e-mail, telefone, empresa e a mensagem que você escrever. Também registramos um identificador anônimo do endereço de acesso para evitar envios abusivos.\n\nFinalidade: usamos esses dados apenas para responder ao seu contato e elaborar propostas comerciais.\n\nCompartilhamento: não vendemos nem compartilhamos seus dados com terceiros para fins de marketing. Os dados ficam armazenados em provedor de banco de dados com acesso restrito à equipe.\n\nSeus direitos: você pode solicitar a consulta, correção ou exclusão dos seus dados a qualquer momento pelos nossos canais de contato.\n\n[Texto provisório — revisar com orientação jurídica antes da publicação definitiva.]"
+    }
+  },
+  "team": [
+    {
+      "name": "Maria",
+      "role": "[Texto provisório] Marketing e estratégia de conteúdo",
+      "bio": "[Texto provisório — editar no painel] Apresentação da Maria: sua trajetória, como trabalha e o que a motiva a ajudar pequenos negócios.",
+      "photo_url": "/images/equipe/maria.jpg",
+      "skills": ["[Editar] Competência 1", "[Editar] Competência 2", "[Editar] Competência 3"],
+      "responsibilities": ["Planejamento de conteúdo", "Gestão de redes sociais", "Atendimento aos clientes"],
+      "visible": true
+    },
+    {
+      "name": "Lukas",
+      "role": "[Texto provisório] Desenvolvimento de sites e sistemas",
+      "bio": "[Texto provisório — editar no painel] Apresentação do Lukas: sua trajetória, como trabalha e o que o motiva a criar soluções digitais.",
+      "photo_url": "/images/equipe/lukas.jpg",
+      "skills": ["[Editar] Competência 1", "[Editar] Competência 2", "[Editar] Competência 3"],
+      "responsibilities": ["Criação de sites", "Sistemas web", "Automações e integrações"],
+      "visible": true
+    }
+  ],
+  "services": [
+    { "category": "marketing", "icon": "target", "title": "Planejamento estratégico de conteúdo", "description": "Definição de objetivos, público, linhas editoriais e formatos para que cada publicação tenha um propósito.", "deliverables": ["Diagnóstico do perfil", "Linhas editoriais", "Definição de formatos e frequência"] },
+    { "category": "marketing", "icon": "instagram", "title": "Gestão de Instagram", "description": "Criação, organização e publicação de conteúdos no perfil da sua empresa, com acompanhamento mensal.", "deliverables": ["Publicações planejadas", "Legendas e chamadas para ação", "Organização do perfil"] },
+    { "category": "marketing", "icon": "music", "title": "Gestão de TikTok", "description": "Conteúdos em vídeo pensados para o formato e a linguagem do TikTok.", "deliverables": ["Roteiros curtos", "Edição dos vídeos", "Publicação planejada"] },
+    { "category": "marketing", "icon": "layout-grid", "title": "Criação de artes e carrosséis", "description": "Peças visuais alinhadas à identidade da sua marca, prontas para publicar.", "deliverables": ["Artes para feed", "Carrosséis", "Capas e destaques"] },
+    { "category": "marketing", "icon": "clapperboard", "title": "Edição de vídeos curtos e Reels", "description": "Edição dinâmica de vídeos curtos a partir do material gravado por você ou pela sua equipe.", "deliverables": ["Cortes e ritmo", "Legendas na tela", "Capa do vídeo"] },
+    { "category": "marketing", "icon": "calendar-days", "title": "Calendário editorial", "description": "Planejamento visual do mês, com datas, temas e formatos de cada publicação.", "deliverables": ["Calendário mensal", "Datas comemorativas relevantes", "Temas por publicação"] },
+    { "category": "marketing", "icon": "megaphone", "title": "Campanhas promocionais", "description": "Planejamento e criação de conteúdos para promoções, lançamentos e datas especiais.", "deliverables": ["Conceito da campanha", "Peças da campanha", "Cronograma de publicação"] },
+    { "category": "marketing", "icon": "chart-column", "title": "Análise de métricas e relatórios", "description": "Acompanhamento dos números do perfil para entender o que funciona e ajustar o planejamento.", "deliverables": ["Relatório mensal", "Principais indicadores", "Recomendações para o próximo mês"] },
+    { "category": "marketing", "icon": "compass", "title": "Estratégia de posicionamento digital", "description": "Definição de como a sua empresa quer ser percebida e como comunicar isso de forma consistente.", "deliverables": ["Proposta de valor", "Tom de voz", "Diretrizes de comunicação"] },
+    { "category": "web", "icon": "rocket", "title": "Landing pages", "description": "Páginas focadas em um objetivo: apresentar uma oferta e gerar contatos.", "deliverables": ["Layout responsivo", "Botões para WhatsApp", "Estrutura pensada para conversão"], "price_label": "A partir de R$ 900" },
+    { "category": "web", "icon": "building-2", "title": "Sites institucionais", "description": "Site completo para apresentar a empresa, os serviços e facilitar o contato.", "deliverables": ["Páginas institucionais", "Seção de serviços", "Contato e localização"], "price_label": "A partir de R$ 1.800" },
+    { "category": "web", "icon": "book-open", "title": "Catálogos digitais", "description": "Vitrine online dos seus produtos ou serviços, fácil de compartilhar.", "deliverables": ["Organização por categorias", "Fotos e descrições", "Pedido pelo WhatsApp"], "price_label": "A partir de R$ 1.500" },
+    { "category": "web", "icon": "smartphone", "title": "Sites responsivos", "description": "Todos os sites são desenvolvidos para funcionar bem em celular, tablet e computador.", "deliverables": ["Adaptação a todas as telas", "Carregamento rápido", "Boas práticas de acessibilidade"] },
+    { "category": "web", "icon": "message-circle", "title": "Integrações com WhatsApp e formulários", "description": "Canais de contato integrados ao site para facilitar o atendimento.", "deliverables": ["Botões com mensagem pronta", "Formulários com validação", "Organização dos contatos recebidos"] },
+    { "category": "web", "icon": "wrench", "title": "Melhorias e manutenção de sites", "description": "Atualizações, ajustes e suporte para manter o seu site funcionando bem.", "deliverables": ["Atualização de conteúdo", "Correções", "Suporte mensal"], "price_label": "R$ 150 a R$ 500/mês" },
+    { "category": "sistemas", "icon": "layout-dashboard", "title": "Sistemas de gestão", "description": "Ferramentas para organizar informações e processos do seu negócio em um só lugar.", "deliverables": [] },
+    { "category": "sistemas", "icon": "users", "title": "Cadastro de clientes", "description": "Registro organizado de clientes e histórico de atendimentos.", "deliverables": [] },
+    { "category": "sistemas", "icon": "list-checks", "title": "Organização de serviços e processos", "description": "Acompanhamento de etapas, prazos e responsáveis.", "deliverables": [] },
+    { "category": "sistemas", "icon": "panels-top-left", "title": "Painéis administrativos", "description": "Áreas restritas para a sua equipe gerenciar conteúdos e informações.", "deliverables": [] },
+    { "category": "sistemas", "icon": "database", "title": "Sistemas com banco de dados", "description": "Informações guardadas com segurança e acessíveis de qualquer lugar.", "deliverables": [] },
+    { "category": "sistemas", "icon": "workflow", "title": "Automação de tarefas", "description": "Menos trabalho manual em tarefas repetitivas.", "deliverables": [] },
+    { "category": "sistemas", "icon": "plug", "title": "Integrações entre ferramentas", "description": "Conexão entre os sistemas que você já utiliza.", "deliverables": [] }
+  ],
+  "plans": [
+    {
+      "name": "Plano Essencial",
+      "price": 697,
+      "description": "Para começar a ter uma presença organizada e constante no Instagram.",
+      "contents_count": 8,
+      "videos_count": 4,
+      "highlighted": false,
+      "notes": "",
+      "items": [
+        "Planejamento mensal",
+        "Artes, capas, legendas e chamadas para ação",
+        "Publicação em um perfil principal do Instagram",
+        "Orientação básica para Stories",
+        "Relatório mensal simplificado",
+        "Uma rodada de ajustes por conteúdo"
+      ]
+    },
+    {
+      "name": "Plano Crescimento",
+      "price": 1097,
+      "description": "Para quem quer crescer com estratégia, calendário e campanhas.",
+      "contents_count": 12,
+      "videos_count": 6,
+      "highlighted": true,
+      "notes": "",
+      "items": [
+        "Diagnóstico inicial do perfil",
+        "Calendário editorial",
+        "Artes, capas, legendas e chamadas para ação",
+        "Orientação para Stories",
+        "Até uma campanha promocional simples por mês",
+        "Publicação em um perfil principal do Instagram",
+        "Relatório mensal e uma reunião estratégica"
+      ]
+    },
+    {
+      "name": "Plano Presença Total",
+      "price": 1697,
+      "description": "Para negócios que querem presença forte e acompanhamento próximo.",
+      "contents_count": 16,
+      "videos_count": 8,
+      "highlighted": false,
+      "notes": "Gestão de até dois perfis conforme o escopo contratado.",
+      "items": [
+        "Planejamento estratégico mensal",
+        "Artes, capas, legendas e chamadas para ação",
+        "Até duas campanhas promocionais simples por mês",
+        "Possibilidade de gestão de até dois perfis, conforme o escopo contratado",
+        "Relatório mensal de desempenho",
+        "Reunião estratégica mensal",
+        "Orientação de Stories e chamadas para contato"
+      ]
+    }
+  ],
+  "web_pricing": [
+    { "name": "Landing page", "description": "Página única focada em uma oferta ou objetivo.", "price_type": "range", "price_min": 900, "price_max": 1800, "price_suffix": "" },
+    { "name": "Site institucional", "description": "Site completo para apresentar a empresa e seus serviços.", "price_type": "range", "price_min": 1800, "price_max": 3500, "price_suffix": "" },
+    { "name": "Catálogo digital", "description": "Vitrine online de produtos ou serviços.", "price_type": "range", "price_min": 1500, "price_max": 3000, "price_suffix": "" },
+    { "name": "Sistema web personalizado", "description": "Solução sob medida, definida após levantamento de requisitos.", "price_type": "from", "price_min": 3000, "price_max": null, "price_suffix": "" },
+    { "name": "Manutenção e suporte", "description": "Atualizações, ajustes e suporte contínuo.", "price_type": "range", "price_min": 150, "price_max": 500, "price_suffix": "/mês" }
+  ],
+  "projects": [
+    {
+      "slug": "ambrozio-car",
+      "title": "Ambrozio Car",
+      "client": "Ambrozio Car",
+      "category": "sistema",
+      "summary": "[Rascunho] Projeto-piloto da Aurestride. Publicar somente com autorização do cliente.",
+      "challenge": "[Rascunho — preencher] Descreva o desafio do cliente.",
+      "solution": "[Rascunho — preencher] Descreva a solução desenvolvida.",
+      "deliverables": [],
+      "results": "",
+      "external_url": "",
+      "status": "draft"
+    }
+  ],
+  "process_steps": [
+    { "title": "Conversa inicial", "description": "Entendemos a necessidade do seu negócio, seus objetivos e o momento da empresa." },
+    { "title": "Diagnóstico e proposta", "description": "Definimos juntos o escopo, as entregas e o investimento, de forma clara." },
+    { "title": "Execução", "description": "Desenvolvemos o projeto ou executamos o planejamento combinado." },
+    { "title": "Acompanhamento", "description": "Revisamos as entregas, medimos os resultados e planejamos as melhorias." }
+  ],
+  "faqs": [
+    { "question": "Como funciona a contratação?", "answer": "Tudo começa com uma conversa para entender a sua necessidade. Em seguida enviamos uma proposta com escopo, entregas, prazos e investimento. Com a proposta aprovada, iniciamos o trabalho." },
+    { "question": "Os planos possuem contrato?", "answer": "Sim. Os planos de marketing são formalizados em contrato, com as entregas, o período e as condições combinadas descritas de forma clara." },
+    { "question": "Posso contratar apenas um site?", "answer": "Sim. Os serviços de criação de sites podem ser contratados de forma independente dos planos de marketing." },
+    { "question": "O domínio e a hospedagem estão incluídos?", "answer": "Domínio e hospedagem não estão incluídos por padrão, pois ficam registrados em nome do cliente. Ajudamos na escolha e na configuração, e qualquer custo de terceiros é informado na proposta." },
+    { "question": "Como funciona o desenvolvimento de um sistema personalizado?", "answer": "Fazemos um levantamento de requisitos para entender o seu processo. A partir dele, definimos as funcionalidades, o prazo e o orçamento específico do sistema." },
+    { "question": "Posso solicitar um orçamento sob medida?", "answer": "Sim. Se nenhum plano atende exatamente o que você precisa, montamos uma proposta personalizada." },
+    { "question": "Como funciona a manutenção?", "answer": "A manutenção é um serviço mensal opcional que inclui atualizações, pequenos ajustes e suporte, conforme o escopo combinado." }
+  ]
+}

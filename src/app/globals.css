@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
+/*
+  Paleta Aurestride (as 4 cores principais podem ser alteradas no painel:
+  o layout injeta --brand-* a partir das configurações).
+  - Texto secundário usa um cinza mais claro que #64748B para garantir contraste
+    AA sobre o azul-marinho; #64748B fica para detalhes e bordas.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-bg: #0b1220;
+  --brand-primary: #086bff;
+  --brand-text: #f8fafc;
+  --brand-muted: #64748b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--brand-bg);
+  --color-ink-2: color-mix(in oklab, var(--brand-bg) 88%, white);
+  --color-ink-3: color-mix(in oklab, var(--brand-bg) 80%, white);
+  --color-electric: var(--brand-primary);
+  --color-electric-soft: color-mix(in oklab, var(--brand-primary) 62%, white);
+  --color-paper: var(--brand-text);
+  --color-slate: var(--brand-muted);
+  --color-mist: color-mix(in oklab, var(--brand-muted) 45%, white);
+  --color-line: color-mix(in oklab, var(--brand-text) 10%, transparent);
+  --color-line-strong: color-mix(in oklab, var(--brand-text) 18%, transparent);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--brand-primary) 60%, transparent);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-electric-soft);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site { padding-inline: 2rem; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-electric-soft);
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 768px) {
+    .eyebrow { font-size: 1.375rem; }
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    font-variation-settings: "opsz" 96;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.875rem;
+    padding: 0.75rem 1.375rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .btn-primary {
+    background: var(--color-electric);
+    color: white;
+    box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--brand-primary) 80%, transparent);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: color-mix(in oklab, var(--brand-primary) 85%, white);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-paper);
+    background: transparent;
+  }
+  .btn-outline:hover:not(:disabled) {
+    border-color: var(--color-paper);
+    background: color-mix(in oklab, var(--brand-text) 6%, transparent);
+  }
+  .btn-ghost { color: var(--color-mist); }
+  .btn-ghost:hover { color: var(--color-paper); }
+
+  .card {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--brand-text) 4%, transparent), color-mix(in oklab, var(--brand-text) 1.5%, transparent));
+    border: 1px solid var(--color-line);
+    border-radius: 0.875rem;
+  }
+
+  .section { padding-block: 5rem; }
+  @media (min-width: 768px) {
+    .section { padding-block: 7rem; }
+  }
+}
+
+/* Revelação suave ao rolar (desligada com prefers-reduced-motion) */
+/* Pré-visualização do painel: tudo visível, com as cores do rascunho. */
+.preview {
+  --color-ink: var(--brand-bg);
+  --color-electric: var(--brand-primary);
+  --color-paper: var(--brand-text);
+}
+.js .preview .reveal { opacity: 1; transform: none; }
+
+/* Só esconde quando o JavaScript está ativo (classe .js no <html>). */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; }
 }
