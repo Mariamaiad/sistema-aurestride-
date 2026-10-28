@@ -7,6 +7,7 @@ import { getAdmin, createSessionClient } from "@/lib/supabase/server";
 import { SITE_TAG, mergeSettings } from "@/lib/content";
 import { RESOURCES, fieldErrors, type ResourceKey } from "@/lib/admin/resources";
 import { SETTINGS_PAGES, getPath, setPath, validateSettingValue, type SettingsPage } from "@/lib/admin/settings-fields";
+import { resolveSections } from "@/lib/sections";
 import { ALLOWED_IMAGE_TYPES, MAX_UPLOAD_BYTES, MEDIA_BUCKET } from "@/lib/env";
 
 export type ActionResult<T = undefined> =
@@ -82,6 +83,11 @@ export async function saveSettings(page: SettingsPage, values: Record<string, un
     }
   }
   if (getPath(next, "brand.name") === "") errors["brand.name"] = "Informe o nome da empresa.";
+  if (page === "estrutura" && !getPath(next, "contact.whatsapp")) {
+    const sections = resolveSections(getPath(next, "layout.sections"));
+    if (sections.some((x) => x.id === "contact" && !x.visible))
+      errors["layout.sections"] = "Sem WhatsApp configurado, os botões de orçamento levam à seção Contato. Deixe-a visível ou cadastre o WhatsApp.";
+  }
   if (Object.keys(errors).length) return { ok: false, error: "Confira os campos destacados.", fieldErrors: errors };
 
   const { error } = await admin.supabase.from("site_settings").upsert({ id: 1, data: next });

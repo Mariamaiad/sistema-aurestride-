@@ -6,7 +6,7 @@ import { Eye, Loader2, X } from "lucide-react";
 import { SETTINGS_PAGES, getPath, validateSettingValue, type SettingField, type SettingsPage } from "@/lib/admin/settings-fields";
 import { saveSettings } from "@/app/admin/actions";
 import { useToast } from "./toast";
-import { ColorField, HighlightsField, ImageField, ListField, TextField, ToggleField } from "./fields";
+import { ColorField, HighlightsField, ImageField, ListField, SectionsField, TextField, ToggleField } from "./fields";
 import { Hero } from "@/components/site/hero";
 import { About } from "@/components/site/about-team";
 import type { SiteSettings } from "@/lib/types";
@@ -169,5 +169,7 @@ function SettingInput({ f, value, onChange, error }: { f: SettingField; value: u
       return <ListField label={f.label} value={(value as string[]) ?? []} onChange={onChange} error={error} help={f.help} />;
     case "highlights":
       return <HighlightsField label={f.label} value={(value as { title: string; text: string }[]) ?? []} onChange={onChange} error={error} />;
+    case "sections":
+      return <SectionsField value={value} onChange={onChange} error={error} />;
   }
 }

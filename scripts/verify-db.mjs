@@ -112,6 +112,35 @@ await as("authenticated", ADMIN, async () => {
 });
 ok((await count("select count(*) c from portfolio_projects where published_at is not null")) === 1, "data de publicação preenchida");
 
+// Clientes (dados internos)
+await as("authenticated", ADMIN, async () => {
+  const c = await tryExec("insert into clients (name, status, monthly_value) values ('Cliente Teste', 'active', 697)");
+  ok(c.ok, "admin cadastra cliente");
+  const t = await tryExec("insert into client_tasks (client_id, title, done) select id, 'Tarefa', true from clients limit 1");
+  ok(t.ok, "admin cria tarefa do cliente");
+  const a = await tryExec("insert into client_activities (client_id, content) select id, 'Reunião inicial' from clients limit 1");
+  ok(a.ok, "admin registra atendimento");
+});
+ok((await count("select count(*) c from client_tasks where done and done_at is not null")) === 1, "data de conclusão da tarefa preenchida");
+await as("anon", null, async () => {
+  ok((await count("select count(*) c from clients")) === 0, "visitante não vê clientes");
+  ok((await count("select count(*) c from client_activities")) === 0, "visitante não vê histórico de clientes");
+  const ins = await tryExec("insert into clients (name) values ('Invasor')");
+  ok(!ins.ok, "visitante não cadastra clientes");
+});
+await as("authenticated", USER, async () => {
+  ok((await count("select count(*) c from clients")) === 0, "usuário comum não vê clientes");
+  ok((await count("select count(*) c from client_tasks")) === 0, "usuário comum não vê tarefas de clientes");
+});
+const badStatus = await tryExec("insert into clients (name, status) values ('X', 'qualquer')");
+ok(!badStatus.ok, "situação inválida do cliente é rejeitada");
+await db.exec("delete from clients");
+ok((await count("select count(*) c from client_tasks")) === 0, "excluir cliente apaga as tarefas");
+
+// Texto do topo
+const heroTitle = (await db.query("select data #>> '{hero,title}' t from site_settings where id = 1")).rows[0].t;
+ok(heroTitle === "Marketing e tecnologia potencializando o crescimento.", "novo título do topo no seed");
+
 // Restrições de integridade
 const bad = await tryExec("insert into marketing_plans (name, contents_count, videos_count) values ('X', 4, 8)");
 ok(!bad.ok, "vídeos não podem exceder o total de conteúdos");

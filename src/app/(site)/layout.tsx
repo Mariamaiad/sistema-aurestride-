@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { RevealObserver } from "@/components/site/reveal-observer";
 import { WhatsappIcon } from "@/components/ui/icons";
+import { SERVICE_SECTIONS, resolveSections } from "@/lib/sections";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { settings } = await getSiteContent();
@@ -33,6 +34,13 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const content = await getSiteContent();
   const { settings } = content;
   const links = contactLinks(settings);
+  const visible = new Set(resolveSections(settings.layout?.sections).filter((x) => x.visible).map((x) => x.id));
+  const navHidden = [
+    !visible.has("about") && "/#sobre",
+    !SERVICE_SECTIONS.some((id) => visible.has(id)) && "/#servicos",
+    !visible.has("portfolio") && "/#portfolio",
+    !visible.has("contact") && "/#contato",
+  ].filter(Boolean) as string[];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -63,7 +71,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         brandName={settings.brand.name}
         logoUrl={settings.brand.logo_url || undefined}
         quoteHref={links.quoteHref}
-        showPortfolio
+        hiddenLinks={navHidden}
       />
       <main id="conteudo">{children}</main>
       <SiteFooter settings={settings} />

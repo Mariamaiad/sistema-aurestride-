@@ -9,12 +9,14 @@ import {
   CircleHelp,
   ExternalLink,
   FileText,
+  HeartHandshake,
   Inbox,
   LayoutDashboard,
   ListOrdered,
   LogOut,
   Menu,
   Palette,
+  PanelsTopLeft,
   Phone,
   Tags,
   Users,
@@ -27,7 +29,11 @@ import { ToastProvider } from "./toast";
 
 const NAV = [
   { href: "/admin", label: "Painel", Icon: LayoutDashboard },
-  { section: "Conteúdo" },
+  { section: "Gestão" },
+  { href: "/admin/clientes", label: "Clientes", Icon: HeartHandshake },
+  { href: "/admin/contatos-recebidos", label: "Contatos recebidos", Icon: Inbox },
+  { section: "Página do site" },
+  { href: "/admin/estrutura", label: "Estrutura da página", Icon: PanelsTopLeft },
   { href: "/admin/conteudo", label: "Textos da página", Icon: FileText },
   { href: "/admin/equipe", label: "Equipe", Icon: Users },
   { href: "/admin/servicos", label: "Serviços", Icon: Wrench },
@@ -39,8 +45,9 @@ const NAV = [
   { section: "Configurações" },
   { href: "/admin/identidade", label: "Identidade e SEO", Icon: Palette },
   { href: "/admin/contatos", label: "Contatos e WhatsApp", Icon: Phone },
-  { href: "/admin/contatos-recebidos", label: "Contatos recebidos", Icon: Inbox },
 ] as const;
+
+const isActive = (pathname: string, href: string) => (href === "/admin" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`));
 
 export function AdminShell({ email, children, preview }: { email: string; children: React.ReactNode; preview?: boolean }) {
   const pathname = usePathname();
@@ -58,9 +65,9 @@ export function AdminShell({ email, children, preview }: { email: string; childr
             key={item.href}
             href={item.href}
             onClick={() => setOpen(false)}
-            aria-current={pathname === item.href ? "page" : undefined}
+            aria-current={isActive(pathname, item.href) ? "page" : undefined}
             className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
-              pathname === item.href ? "bg-electric/15 font-medium text-paper" : "text-mist hover:bg-white/5 hover:text-paper"
+              isActive(pathname, item.href) ? "bg-electric/15 font-medium text-paper" : "text-mist hover:bg-white/5 hover:text-paper"
             }`}
           >
             <item.Icon className="h-4 w-4 shrink-0" aria-hidden="true" />

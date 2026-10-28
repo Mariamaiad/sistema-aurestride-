@@ -2,8 +2,10 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, Phone, Trash2 } from "lucide-react";
+import Link from "next/link";
+import { HeartHandshake, Mail, Phone, Trash2 } from "lucide-react";
 import { deleteLead, setLeadStatus } from "@/app/admin/actions";
+import { leadToClient } from "@/app/admin/client-actions";
 import type { Lead } from "@/lib/admin/data";
 import { useToast } from "./toast";
 import { IconBtn } from "./fields";
@@ -11,7 +13,7 @@ import { normalizeWhatsapp } from "@/lib/format";
 
 const STATUS = { new: "Novo", contacted: "Respondido", archived: "Arquivado" } as const;
 
-export function LeadsList({ leads }: { leads: Lead[] }) {
+export function LeadsList({ leads, clientByLead = {} }: { leads: Lead[]; clientByLead?: Record<string, string> }) {
   const [filter, setFilter] = useState<"all" | Lead["status"]>("all");
   const [pending, start] = useTransition();
   const toast = useToast();
@@ -80,7 +82,7 @@ export function LeadsList({ leads }: { leads: Lead[] }) {
               </div>
             </div>
             <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-paper/90">{l.message}</p>
-            <div className="mt-3 flex flex-wrap gap-4 text-sm">
+            <div className="mt-3 flex flex-wrap items-center gap-4 text-sm">
               {l.email && (
                 <a href={`mailto:${l.email}`} className="inline-flex items-center gap-1.5 text-electric-soft hover:text-paper">
                   <Mail className="h-4 w-4" /> {l.email}
@@ -90,6 +92,28 @@ export function LeadsList({ leads }: { leads: Lead[] }) {
                 <a href={`https://wa.me/${normalizeWhatsapp(l.phone)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-electric-soft hover:text-paper">
                   <Phone className="h-4 w-4" /> {l.phone}
                 </a>
+              )}
+              {clientByLead[l.id] ? (
+                <Link href={`/admin/clientes/${clientByLead[l.id]}`} className="ml-auto inline-flex items-center gap-1.5 text-xs text-mist hover:text-paper">
+                  <HeartHandshake className="h-4 w-4" /> Ver ficha do cliente
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  disabled={pending}
+                  onClick={() =>
+                    start(async () => {
+                      const r = await leadToClient(l.id);
+                      if (r.ok && r.data) {
+                        toast("success", r.message ?? "Cliente criado.");
+                        router.push(`/admin/clientes/${r.data.id}`);
+                      } else if (!r.ok) toast("error", r.error);
+                    })
+                  }
+                  className="btn btn-outline ml-auto !min-h-8 !px-3 !py-1 text-xs"
+                >
+                  <HeartHandshake className="h-4 w-4" /> Transformar em cliente
+                </button>
               )}
             </div>
           </li>

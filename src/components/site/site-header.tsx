@@ -17,17 +17,18 @@ export function SiteHeader({
   brandName,
   logoUrl,
   quoteHref,
-  showPortfolio,
+  hiddenLinks = [],
 }: {
   brandName: string;
   logoUrl?: string;
   quoteHref: string;
-  showPortfolio: boolean;
+  /** Itens do menu cujas seções estão ocultas na página. */
+  hiddenLinks?: string[];
 }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const external = quoteHref.startsWith("http");
-  const nav = showPortfolio ? NAV : NAV.filter((n) => n.label !== "Portfólio");
+  const nav = NAV.filter((n) => !hiddenLinks.includes(n.href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);

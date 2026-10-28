@@ -1,14 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, BadgeDollarSign, BriefcaseBusiness, Inbox, Users, Wrench } from "lucide-react";
+import { AlertTriangle, ArrowRight, BadgeDollarSign, BriefcaseBusiness, CalendarClock, HeartHandshake, Inbox, Users, Wrench } from "lucide-react";
 import { PageTitle } from "@/components/admin/admin-shell";
 import { loadDashboard } from "@/lib/admin/data";
+import { relativeDay, todayISO } from "@/lib/admin/clients";
+import { formatBRL } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Painel" };
 
 export default async function Dashboard() {
   const d = await loadDashboard();
+  const today = todayISO();
   const cards = [
+    {
+      label: "Clientes em atendimento",
+      value: d.clients.active,
+      detail: `${formatBRL(d.clients.mrr)}/mês${d.clients.atRisk ? ` · ${d.clients.atRisk} em risco` : ""}`,
+      href: "/admin/clientes",
+      Icon: HeartHandshake,
+    },
     { label: "Serviços ativos", value: d.services.active, detail: `de ${d.services.total} cadastrados`, href: "/admin/servicos", Icon: Wrench },
     { label: "Planos ativos", value: d.plans.active, detail: `de ${d.plans.total} cadastrados`, href: "/admin/planos", Icon: BadgeDollarSign },
     { label: "Projetos publicados", value: d.projects.published, detail: `${d.projects.drafts} em rascunho`, href: "/admin/portfolio", Icon: BriefcaseBusiness },
@@ -17,6 +27,8 @@ export default async function Dashboard() {
   ];
 
   const shortcuts = [
+    ["/admin/clientes/novo", "Cadastrar um cliente"],
+    ["/admin/estrutura", "Ordenar ou ocultar seções do site"],
     ["/admin/conteudo", "Editar textos da página"],
     ["/admin/equipe", "Trocar fotos e biografias"],
     ["/admin/planos", "Atualizar preços dos planos"],
@@ -27,7 +39,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <PageTitle title="Painel" intro="Resumo do conteúdo do site e atalhos para as edições mais comuns." />
+      <PageTitle title="Painel" intro="Resumo dos clientes e do conteúdo do site, com atalhos para as tarefas mais comuns." />
 
       {(d.missingContacts.length > 0 || d.placeholders.length > 0) && (
         <section aria-label="Pendências" className="mb-8 space-y-3">
@@ -48,6 +60,30 @@ export default async function Dashboard() {
               </span>
             </div>
           )}
+        </section>
+      )}
+
+      {d.followUps.length > 0 && (
+        <section aria-labelledby="follow" className="mb-8 rounded-xl border border-white/10 bg-white/[0.02] p-5">
+          <h2 id="follow" className="flex items-center gap-2 text-sm font-semibold text-paper">
+            <CalendarClock className="h-4 w-4 text-electric-soft" aria-hidden="true" /> Clientes para contatar
+          </h2>
+          <ul className="mt-3 divide-y divide-white/[0.06]">
+            {d.followUps.map((f) => {
+              const rel = relativeDay(f.next_contact, today);
+              return (
+                <li key={f.id}>
+                  <Link href={`/admin/clientes/${f.id}`} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 py-2.5 text-sm hover:text-paper">
+                    <span className="text-paper">
+                      {f.name}
+                      {f.note && <span className="text-mist"> · {f.note}</span>}
+                    </span>
+                    <span className={`text-xs ${rel.tone === "late" ? "text-red-300" : rel.tone === "today" ? "text-amber-200" : "text-mist"}`}>{rel.text}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </section>
       )}
 

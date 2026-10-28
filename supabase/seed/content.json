@@ -31,8 +31,8 @@
     },
     "hero": {
       "eyebrow": "Aurestride Digital",
-      "title": "Marketing e tecnologia para o seu negócio crescer.",
-      "subtitle": "Estratégia digital, sites e sistemas web desenvolvidos para ajudar pequenos negócios a evoluir com mais presença, organização e profissionalismo.",
+      "title": "Marketing e tecnologia potencializando o crescimento.",
+      "subtitle": "Unimos análise de dados, estratégia de marketing, posicionamento de marca, desenvolvimento de sites e sistemas automatizados para transformar negócios, otimizar processos e aumentar a produtividade.",
       "image_url": "/images/hero-equipe.jpg",
       "image_alt": "Maria e Lukas, da Aurestride Digital, em reunião",
       "cta_primary": "Conheça nossos serviços",
@@ -83,6 +83,21 @@
       "contact_eyebrow": "Contato",
       "contact_title": "Vamos conversar sobre o seu negócio?",
       "contact_text": "Conte o que você precisa e retornamos com uma proposta clara, com escopo e investimento definidos."
+    },
+    "layout": {
+      "sections": [
+        { "id": "about", "visible": true },
+        { "id": "team", "visible": true },
+        { "id": "marketing", "visible": true },
+        { "id": "sites", "visible": true },
+        { "id": "systems", "visible": true },
+        { "id": "plans", "visible": true },
+        { "id": "web_pricing", "visible": true },
+        { "id": "portfolio", "visible": true },
+        { "id": "process", "visible": true },
+        { "id": "faq", "visible": true },
+        { "id": "contact", "visible": true }
+      ]
     },
     "footer": {
       "text": "Marketing digital, sites e sistemas web para pequenos negócios.",

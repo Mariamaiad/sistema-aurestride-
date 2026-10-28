@@ -48,6 +48,8 @@ supabase/seed.sql          Gerado a partir do JSON (npm run seed:build)
 | `process_steps`, `faqs` | "Como funciona" e perguntas frequentes |
 | `media` | Registro das imagens enviadas pelo painel |
 | `leads` | Mensagens do formulário de contato |
+| `clients` | Ficha de cada cliente (situação, contrato, próximo contato, observações) |
+| `client_tasks`, `client_activities` | Tarefas e histórico de atendimento de cada cliente |
 | `admins` | Quem pode editar o site |
 
 ---
@@ -70,7 +72,8 @@ npm run dev                  # http://localhost:3000  ·  painel em /admin
 
 1. Crie um projeto em [supabase.com](https://supabase.com). A região São Paulo (`sa-east-1`) é a mais próxima.
 2. Aplique as migrações. Há dois caminhos:
-   - **Pelo painel do Supabase:** abra o SQL Editor e execute, nesta ordem, o conteúdo de `supabase/migrations/20261027000001_schema.sql`, `…0002_security.sql`, `…0003_storage.sql` e, por fim, `supabase/seed.sql`.
+   - **Pelo painel do Supabase:** abra o SQL Editor e execute, nesta ordem, o conteúdo de `supabase/migrations/20261027000001_schema.sql`, `…0002_security.sql`, `…0003_storage.sql`, `20261028000001_hero_texto.sql`, `20261028000002_clientes.sql` e, por fim, `supabase/seed.sql`.
+   - **Banco já configurado antes de 28/10/2026:** rode apenas `20261028000001_hero_texto.sql` (troca o título e a descrição do topo, se ainda forem os antigos) e `20261028000002_clientes.sql` (cria a gestão de clientes). Não rode o `seed.sql` de novo.
    - **Pela CLI:** `npx supabase link --project-ref SEU_REF`, depois `npx supabase db push` e, por último, rode `supabase/seed.sql` no SQL Editor.
 3. Copie as chaves em **Project Settings → API** para o `.env.local`:
    - `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` (públicas)
@@ -107,6 +110,20 @@ Cada novo `git push` na branch principal publica automaticamente.
 ## Guia da Maria: como editar o site
 
 Acesse **seudominio.com.br/admin** e entre com seu e-mail e senha. Toda alteração salva aparece no site em poucos segundos. Uma mensagem verde confirma o salvamento; se aparecer uma mensagem vermelha, nada foi alterado e o motivo vem descrito.
+
+### Clientes (acompanhamento)
+- Em **Clientes** ficam todos os clientes, com busca e filtros: *Em atendimento*, *Precisam de atenção* (contato vencido, tarefa atrasada ou relacionamento “Em risco”), *Em negociação*, *Pausado* e *Encerrado*. O topo mostra a receita mensal dos clientes em atendimento.
+- Cada cliente tem duas abas:
+  - **Acompanhamento:** data do **próximo contato** (com atalhos de amanhã, 1 semana, 15 dias e 1 mês), **tarefas e entregas** com prazo, **registro de atendimento** (WhatsApp, reunião, ligação, entrega, pagamento, retorno do cliente) e o **histórico** completo.
+  - **Ficha do cliente:** contato, situação, como está o relacionamento, serviços contratados, plano, valor mensal, vencimento, datas do contrato e anotações fixas (aparecem no topo como “Lembrar sempre”). Não guarde senhas.
+- Em **Contatos recebidos**, o botão **Transformar em cliente** cria a ficha com os dados da mensagem e agenda o primeiro retorno para hoje.
+- O **Painel** inicial lista os clientes com contato vencido ou nos próximos 3 dias.
+- Esses dados são internos: só administradores conseguem ver (RLS).
+
+### Estrutura da página
+- Em **Estrutura da página**, mude a ordem das seções com as setas e mostre ou oculte cada uma com o ícone de olho. O topo fica sempre primeiro.
+- Ocultar uma seção também tira o link correspondente do menu (Sobre nós, Serviços, Portfólio, Contato).
+- Sem WhatsApp cadastrado, a seção Contato não pode ser ocultada, porque os botões de orçamento levam até ela.
 
 ### Trocar fotos
 - **Sua foto ou a do Lukas:** abra **Equipe**, clique no lápis do perfil e use **Trocar imagem**. Prefira fotos verticais, com o rosto bem enquadrado.

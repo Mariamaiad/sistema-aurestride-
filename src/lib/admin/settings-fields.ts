@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { imageUrl } from "./resources";
+import { validateSections } from "@/lib/sections";
 
 export type SettingField =
   | { path: string; label: string; type: "text" | "email" | "url"; max: number; help?: string; placeholder?: string }
@@ -8,7 +9,8 @@ export type SettingField =
   | { path: string; label: string; type: "color"; help?: string }
   | { path: string; label: string; type: "boolean"; help?: string }
   | { path: string; label: string; type: "list"; help?: string }
-  | { path: string; label: string; type: "highlights"; help?: string };
+  | { path: string; label: string; type: "highlights"; help?: string }
+  | { path: string; label: string; type: "sections"; help?: string };
 
 export interface SettingGroup {
   id: string;
@@ -17,9 +19,22 @@ export interface SettingGroup {
   fields: SettingField[];
 }
 
-export type SettingsPage = "identidade" | "contatos" | "conteudo";
+export type SettingsPage = "identidade" | "contatos" | "conteudo" | "estrutura";
 
 export const SETTINGS_PAGES: Record<SettingsPage, { title: string; intro: string; groups: SettingGroup[] }> = {
+  estrutura: {
+    title: "Estrutura da página",
+    intro: "Escolha a ordem das seções da página principal e quais aparecem. O topo (apresentação) fica sempre em primeiro lugar.",
+    groups: [
+      {
+        id: "layout",
+        title: "Seções da página principal",
+        description: "Use as setas para mudar a ordem e o olho para mostrar ou ocultar. Ocultar não apaga nada: o conteúdo continua salvo.",
+        fields: [{ path: "layout.sections", label: "Seções", type: "sections" }],
+      },
+    ],
+  },
+
   identidade: {
     title: "Identidade e SEO",
     intro: "Nome, logo, cores e como o site aparece no Google e ao ser compartilhado.",
@@ -95,7 +110,7 @@ export const SETTINGS_PAGES: Record<SettingsPage, { title: string; intro: string
 
   conteudo: {
     title: "Textos da página",
-    intro: "Textos principais de cada seção. As listas (serviços, planos etc.) têm módulos próprios.",
+    intro: "Textos principais de cada seção. As listas (serviços, planos etc.) têm módulos próprios. Para mudar a ordem ou ocultar seções, use Estrutura da página.",
     groups: [
       {
         id: "hero",
@@ -210,6 +225,8 @@ export function validateSettingValue(f: SettingField, v: unknown): string | null
       return Array.isArray(v) && v.length <= 20 && v.every((x) => typeof x === "string" && x.trim() && x.length <= 120)
         ? null
         : "Lista inválida (até 20 itens de 120 caracteres).";
+    case "sections":
+      return validateSections(v);
     case "highlights":
       return Array.isArray(v) &&
         v.length <= 4 &&

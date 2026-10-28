@@ -2,11 +2,12 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useId, useRef, useState } from "react";
-import { ArrowDown, ArrowUp, ImagePlus, Loader2, Plus, Trash2, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Eye, EyeOff, ImagePlus, Loader2, Plus, Trash2, X } from "lucide-react";
 import { getBrowserClient } from "@/lib/supabase/client";
 import { ALLOWED_IMAGE_TYPES, MAX_UPLOAD_BYTES, MEDIA_BUCKET } from "@/lib/env";
 import { recordMedia } from "@/app/admin/actions";
 import { SERVICE_ICON_OPTIONS, ServiceIcon } from "@/components/ui/icons";
+import { SECTION_DEFS, resolveSections, type SectionEntry } from "@/lib/sections";
 
 export const inputCls =
   "w-full rounded-lg border border-white/12 bg-white/[0.04] px-3 py-2 text-sm text-paper placeholder:text-slate focus:border-electric focus:outline-none focus:ring-2 focus:ring-electric/30 aria-[invalid=true]:border-red-400";
@@ -519,5 +520,71 @@ export function HighlightsField({
         </button>
       )}
     </FieldShell>
+  );
+}
+
+/** Ordem e visibilidade das seções da página principal. */
+export function SectionsField({
+  value,
+  onChange,
+  error,
+}: {
+  value: unknown;
+  onChange: (v: SectionEntry[]) => void;
+  error?: string;
+}) {
+  const list = resolveSections(value);
+  const move = (i: number, d: -1 | 1) => {
+    const next = [...list];
+    const j = i + d;
+    if (j < 0 || j >= next.length) return;
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  return (
+    <div className="grid gap-2">
+      <div className="flex items-center gap-3 rounded-xl border border-dashed border-white/15 px-4 py-3 text-sm text-mist">
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white/5 text-xs tabular-nums">0</span>
+        <span>
+          <span className="font-medium text-paper">Apresentação principal (topo)</span> · sempre visível, sempre primeiro
+        </span>
+      </div>
+      <ol className="grid gap-2">
+        {list.map((s, i) => {
+          const def = SECTION_DEFS[s.id];
+          return (
+            <li
+              key={s.id}
+              className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition-colors ${
+                s.visible ? "border-white/10 bg-white/[0.03]" : "border-white/5 bg-transparent"
+              }`}
+            >
+              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/5 text-xs tabular-nums text-mist">{i + 1}</span>
+              <div className={`min-w-0 flex-1 ${s.visible ? "" : "opacity-50"}`}>
+                <p className="text-sm font-medium text-paper">
+                  {def.label}
+                  {!s.visible && <span className="ml-2 text-xs font-normal text-mist">(oculta)</span>}
+                </p>
+                <p className="truncate text-xs text-mist">{def.hint}</p>
+              </div>
+              <IconBtn label={s.visible ? `Ocultar ${def.label}` : `Mostrar ${def.label}`} onClick={() => onChange(list.map((x, k) => (k === i ? { ...x, visible: !x.visible } : x)))}>
+                {s.visible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+              </IconBtn>
+              <IconBtn label="Mover para cima" onClick={() => move(i, -1)} disabled={i === 0}>
+                <ArrowUp className="h-4 w-4" />
+              </IconBtn>
+              <IconBtn label="Mover para baixo" onClick={() => move(i, 1)} disabled={i === list.length - 1}>
+                <ArrowDown className="h-4 w-4" />
+              </IconBtn>
+            </li>
+          );
+        })}
+      </ol>
+      {error && (
+        <p className="text-xs text-red-300" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
