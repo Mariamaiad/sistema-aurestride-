@@ -59,14 +59,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      {content.demo && (
-        <div
-          role="status"
-          className="fixed bottom-3 left-1/2 z-[60] w-[min(92vw,34rem)] -translate-x-1/2 rounded-lg bg-amber-400 px-4 py-2 text-center text-xs font-medium text-ink shadow-lg"
-        >
-          Modo demonstração: Supabase não conectado. Conteúdo dos dados iniciais, somente leitura.
-        </div>
-      )}
+      
       <SiteHeader
         brandName={settings.brand.name}
         logoUrl={settings.brand.logo_url || undefined}
